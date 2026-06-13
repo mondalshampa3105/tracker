@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../api/client.js";
 
 const fmt = (n) =>
-  n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+  n.toLocaleString(undefined, { style: "currency", currency: "INR" });
 const currentMonth = () => new Date().toISOString().slice(0, 7);
 
 export default function Dashboard() {

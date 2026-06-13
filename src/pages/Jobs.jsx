@@ -99,7 +99,7 @@ export default function Jobs({ meta }) {
                 </div>
                 <div className="item-sub">
                   {job.company}
-                  {job.salary && ` · ₹{job.salary}`}
+                  {job.salary && ` · ₹${job.salary}`}
                   {job.appliedDate &&
                     ` · applied ${new Date(job.appliedDate).toLocaleDateString()}`}
                 </div>
