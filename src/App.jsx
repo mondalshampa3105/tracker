@@ -9,12 +9,25 @@ export default function App() {
   const [meta, setMeta] = useState({ jobStatuses: [], expenseCategories: [] });
   const [metaError, setMetaError] = useState("");
 
+  const [darkMode, setDarkMode] = useState(
+  localStorage.getItem("theme") === "dark"
+);
+
   useEffect(() => {
     api
       .getMeta()
       .then(setMeta)
       .catch((err) => setMetaError(err.message));
   }, []);
+  useEffect(() => {
+  if (darkMode) {
+    document.body.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+}, [darkMode]);
 
   return (
     <div className="app">
@@ -34,6 +47,18 @@ export default function App() {
               Expenses
             </NavLink>
           </nav>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            style={{
+              padding: "8px 14px",
+              borderRadius: "8px",
+              border: "1px solid var(--line)",
+              background: "var(--card)",
+              color: "var(--ink)"
+            }}
+          >
+            {darkMode ? "☀️ Light" : "🌙 Dark"}
+          </button>
         </div>
       </header>
 
